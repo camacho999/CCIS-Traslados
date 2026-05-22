@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Acerca de - {{ app_name }}{% endblock %}
+
+{% block content %}
+<section class="about">
+    <h1>Acerca de este proyecto</h1>
+    
+    <div class="content-block">
+        <h2>Descripción</h2>
+        <p>
+            Esta es una aplicación Flask moderna construida siguiendo las mejores prácticas 
+            y técnicas actuales. Utiliza SQLAlchemy como ORM principal para la gestión de 
+            la base de datos SQLite3.
+        </p>
+    </div>
+    
+    <div class="content-block">
+        <h2>Tecnologías Utilizadas</h2>
+        <ul class="tech-list">
+            <li><strong>Flask 3.0</strong> - Framework web Python</li>
+            <li><strong>SQLAlchemy 2.0</strong> - ORM para base de datos</li>
+            <li><strong>Flask-Migrate</strong> - Migraciones de base de datos</li>
+            <li><strong>Flask-WTF</strong> - Formularios con validación</li>
+            <li><strong>Flask-Login</strong> - Gestión de sesiones de usuario</li>
+            <li><strong>Flask-Limiter</strong> - Rate limiting para seguridad</li>
+            <li><strong>SQLite3</strong> - Base de datos ligera</li>
+        </ul>
+    </div>
+    
+    <div class="content-block">
+        <h2>Estructura del Proyecto</h2>
+        <pre class="code-block">
+project/
+├── app/
+│   ├── models/          # Modelos de base de datos
+│   ├── routes/          # Blueprints y rutas
+│   ├── templates/       # Plantillas HTML
+│   └── static/          # Archivos estáticos (CSS, JS, img)
+├── config/              # Configuración de la aplicación
+├── migrations/          # Migraciones de base de datos
+├── tests/               # Tests unitarios
+├── .env.example         # Ejemplo de variables de entorno
+├── requirements.txt     # Dependencias del proyecto
+└── run.py              # Punto de entrada principal
+        </pre>
+    </div>
+</section>
+{% endblock %}
