@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Bienvenido a {{ app_name }}</h1>
+    <p>Una aplicación Flask moderna con SQLAlchemy y SQLite3</p>
+    
+    {% if not current_user.is_authenticated %}
+    <div class="cta-buttons">
+        <a href="{{ url_for('auth.register') }}" class="btn btn-primary">Comenzar</a>
+        <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">Iniciar Sesión</a>
+    </div>
+    {% else %}
+    <div class="welcome-message">
+        <h2>¡Hola, {{ current_user.username }}!</h2>
+        <p>Has iniciado sesión correctamente.</p>
+    </div>
+    {% endif %}
+</div>
+
+<section class="features">
+    <h2>Características</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>🚀 Flask 3.0</h3>
+            <p>Framework web ligero y potente</p>
+        </div>
+        <div class="feature-card">
+            <h3>💾 SQLAlchemy</h3>
+            <p>ORM moderno para gestión de base de datos</p>
+        </div>
+        <div class="feature-card">
+            <h3>🔒 Autenticación</h3>
+            <p>Sistema de login y registro seguro</p>
+        </div>
+        <div class="feature-card">
+            <h3>📊 Flask-Migrate</h3>
+            <p>Migraciones de base de datos con Alembic</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
