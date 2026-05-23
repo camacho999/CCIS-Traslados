@@ -8,12 +8,14 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from flask_login import LoginManager, current_user
 
 # Inicialización de extensiones
 db = SQLAlchemy()
 migrate = Migrate()
 csrf = CSRFProtect()
 limiter = Limiter(key_func=get_remote_address)
+login_manager = LoginManager()
 
 
 def create_app(config_name='development'):
@@ -30,6 +32,13 @@ def create_app(config_name='development'):
     migrate.init_app(app, db)
     csrf.init_app(app)
     limiter.init_app(app)
+    login_manager.init_app(app)
+    
+    # Configurar login_manager
+    from app.models.user import User
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
     
     # Registrar blueprints
     register_blueprints(app)
@@ -57,6 +66,7 @@ def register_templates(app):
         """Variables globales disponibles en todos los templates."""
         return {
             'app_name': 'Flask App',
+            'current_user': current_user,
         }
 
 
